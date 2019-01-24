@@ -23,9 +23,9 @@ class GenusController extends Controller
     }
 
     /**
-     * @Route("/genus/{genusName}/notes", methods={"GET"})
+     * @Route("/genus/{genusName}/notes", methods={"GET"}, name="genus_show_notes")
      */
-    public function getNotesAction($genusName)
+    public function getNotesAction()
     {
 
         $notes = [

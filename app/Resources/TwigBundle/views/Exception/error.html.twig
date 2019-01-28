@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1 class="text-center">Sorry, 404...</h1>
+    <h1 class="text-center">{{ exception.message }}</h1>
+
+    <div class="text-center">
+        <a href="{{ path('home_page') }}">Go to main</a>
+    </div>
+{% endblock %}

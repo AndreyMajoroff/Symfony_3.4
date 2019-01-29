@@ -6,6 +6,8 @@
     <h1 class="text-center">{{ exception.message }}</h1>
 
     <div class="text-center">
-        <a href="{{ path('home_page') }}">Go to main</a>
+        <a href="{{ path('home_page') }}" >
+            <img src="{{ asset('images/error_gomer.jpg') }}">
+            <h3>Click to get Homepage</h3></a>
     </div>
 {% endblock %}

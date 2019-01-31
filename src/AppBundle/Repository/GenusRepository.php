@@ -4,6 +4,7 @@
 namespace AppBundle\Repository;
 
 
+use AppBundle\Entity\Genus;
 use Doctrine\ORM\EntityRepository;
 
 class GenusRepository extends EntityRepository

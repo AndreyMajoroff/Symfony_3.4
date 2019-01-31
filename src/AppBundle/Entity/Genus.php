@@ -3,6 +3,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -43,7 +44,15 @@ class Genus
      */
     private $isPublished = true;
 
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\GenusNote", mappedBy="genus")
+     */
+    private $notes;
 
+    public function __construct()
+    {
+        $this->notes = new ArrayCollection();
+    }
 
     /**
      * @return mixed
@@ -120,5 +129,13 @@ class Genus
     public function setIsPublished($isPublished): void
     {
         $this->isPublished = $isPublished;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNotes()
+    {
+        return $this->notes;
     }
 }

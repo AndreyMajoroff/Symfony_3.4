@@ -34,6 +34,12 @@ class GenusNote
      */
     private $createdAt;
 
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Genus")
+     */
+    private $genus;
+
     /**
      * @return mixed
      */
@@ -104,6 +110,22 @@ class GenusNote
     public function setCreatedAt($createdAt): void
     {
         $this->createdAt = $createdAt;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGenus()
+    {
+        return $this->genus;
+    }
+
+    /**
+     * @param mixed $genus
+     */
+    public function setGenus(Genus $genus): void
+    {
+        $this->genus = $genus;
     }
 
 }

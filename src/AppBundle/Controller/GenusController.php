@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Genus;
 use AppBundle\Entity\GenusNote;
+use AppBundle\Service\MarkdownTransformer;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -66,6 +67,25 @@ class GenusController extends Controller
             throw $this->createNotFoundException('No genus "'.$genusName.'" found!');
         }
 
+        $transformer = new MarkdownTransformer(
+            $this->get('markdown.parser')
+        );
+        $funFact = $transformer->parse($genus->getFunFact());
+
+//        $cache = $this->get('doctrine_cache.providers.my_markdown_cache');
+//        $key = md5($funFact);
+//        if ($cache->contains($key))
+//        {
+//            $funFact = $cache->fetch($key);
+//        }else{
+//            sleep(1);
+//
+//            $funFact = $this->get('markdown.parser')
+//                ->transform($funFact);
+//
+//            $cache->save($key, $funFact);
+//        }
+
         $this->get('logger')
             ->info('Showing genus: '.$genusName);
 
@@ -74,6 +94,7 @@ class GenusController extends Controller
 
         return $this->render('genus/show.html.twig', [
             'genus' => $genus,
+            'funFact' => $funFact,
             'recentNoteCount' => count($recentNotes),
         ]);
     }

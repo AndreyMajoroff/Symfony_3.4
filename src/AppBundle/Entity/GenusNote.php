@@ -36,7 +36,7 @@ class GenusNote
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="Genus", inversedBy="notes")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Genus", inversedBy="notes")
      * @ORM\JoinColumn(nullable=false)
      */
     private $genus;
@@ -128,5 +128,4 @@ class GenusNote
     {
         $this->genus = $genus;
     }
-
 }

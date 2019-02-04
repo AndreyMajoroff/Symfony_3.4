@@ -29,7 +29,8 @@ class GenusFormType extends AbstractType
                 'choices' => [
                     'Yes' => true,
                     'No' => false,
-                ]
+                ],
+
             ])
             ->add('firstDiscoveredAt', DateType::class, [
                 'widget' => 'single_text',

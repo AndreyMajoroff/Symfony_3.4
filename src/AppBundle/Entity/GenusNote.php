@@ -92,7 +92,7 @@ class GenusNote
     /**
      * @param mixed $note
      */
-    public function setNote($note): void
+    public function setNote($note)
     {
         $this->note = $note;
     }
@@ -108,7 +108,7 @@ class GenusNote
     /**
      * @param mixed $createdAt
      */
-    public function setCreatedAt($createdAt): void
+    public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
     }
@@ -124,7 +124,7 @@ class GenusNote
     /**
      * @param mixed $genus
      */
-    public function setGenus(Genus $genus): void
+    public function setGenus(Genus $genus)
     {
         $this->genus = $genus;
     }

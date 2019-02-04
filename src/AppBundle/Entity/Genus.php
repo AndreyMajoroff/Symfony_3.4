@@ -114,6 +114,14 @@ class Genus
     }
 
     /**
+     * @return mixed
+     */
+    public function getisPublished()
+    {
+        return $this->isPublished;
+    }
+
+    /**
      * @return ArrayCollection|GenusNote[]
      */
     public function getNotes()

@@ -12,13 +12,19 @@ class GenusFormType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('specieCount')
-            ->add('funFact');
+            ->add('subFamily')
+            ->add('speciesCount')
+            ->add('funFact')
+            ->add('isPublished')
+            ->add('firstDiscoveredAt')
+            ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
-
+        $resolver->setDefaults([
+           'data_class' => 'AppBundle\Entity\Genus'
+        ]);
     }
 
     public function getBlockPrefix()

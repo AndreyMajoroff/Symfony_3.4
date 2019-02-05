@@ -5,7 +5,7 @@ namespace AppBundle\Security;
 
 
 use AppBundle\Form\LoginForm;
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\RouterInterface;
@@ -23,7 +23,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
 
 
     public function __construct(FormFactoryInterface $formFactory
-        , EntityManager $em
+        , EntityManagerInterface $em
         , RouterInterface $router
     )
     {

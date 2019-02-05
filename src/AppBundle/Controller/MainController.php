@@ -14,7 +14,7 @@ class MainController extends Controller
      * @return \Symfony\Component\HttpFoundation\Response
      * @Route("/", name="home_page")
      */
-    public function hompageAction()
+    public function homepageAction()
     {
         return $this->render('main/hompage.html.twig');
     }

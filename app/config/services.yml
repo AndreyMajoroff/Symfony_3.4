@@ -21,6 +21,10 @@ services:
     resource: '../../src/AppBundle/DataFixtures/ORM/'
     tags: ['doctrine.fixture.orm']
 
+  app.security.login_form_authenticator:
+    class: AppBundle\Security\LoginFormAuthenticator
+    autowire: true
+
 
 #    # default configuration for services in *this* file
 #    _defaults:

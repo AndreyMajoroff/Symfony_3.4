@@ -11,7 +11,7 @@ class LoadFixtures implements ORMFixtureInterface
     public function load(ObjectManager $manager)
     {
         Fixtures::load(
-            __DIR__.'/fixtures.yml',
+            __DIR__ . '/fixtures.yaml',
             $manager,
             [
                 'providers' => [$this]

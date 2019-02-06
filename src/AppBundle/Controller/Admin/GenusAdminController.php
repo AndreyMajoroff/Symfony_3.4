@@ -4,12 +4,14 @@ namespace AppBundle\Controller\Admin;
 
 use AppBundle\Entity\Genus;
 use AppBundle\Form\GenusFormType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/admin")
+ * @Security("is_granted('ROLE_ADMIN')")
  */
 class GenusAdminController extends Controller
 {
@@ -18,6 +20,18 @@ class GenusAdminController extends Controller
      */
     public function indexAction()
     {
+
+//        3 variants of access denie first in annotations of action or class
+//         @Security("is_granted('ROLE_ADMIN')")
+
+//     2  if (!$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN'))
+//        {
+//            throw $this
+//              ->createAccessDeniedException('Security authorisation not Granted as ADMIN');
+//        }
+
+//     3  $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         $genuses = $this->getDoctrine()
             ->getRepository('AppBundle:Genus')
             ->findAll();

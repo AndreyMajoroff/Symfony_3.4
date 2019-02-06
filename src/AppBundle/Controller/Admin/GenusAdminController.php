@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/admin")
- * @Security("is_granted('ROLE_ADMIN')")
+ * @Security("is_granted('ROLE_MANAGE_GENUS')")
  */
 class GenusAdminController extends Controller
 {

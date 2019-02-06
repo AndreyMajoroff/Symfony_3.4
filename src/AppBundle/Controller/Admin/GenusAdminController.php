@@ -20,18 +20,6 @@ class GenusAdminController extends Controller
      */
     public function indexAction()
     {
-
-//        3 variants of access denie first in annotations of action or class
-//         @Security("is_granted('ROLE_ADMIN')")
-
-//     2  if (!$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN'))
-//        {
-//            throw $this
-//              ->createAccessDeniedException('Security authorisation not Granted as ADMIN');
-//        }
-
-//     3  $this->denyAccessUnlessGranted('ROLE_ADMIN');
-
         $genuses = $this->getDoctrine()
             ->getRepository('AppBundle:Genus')
             ->findAll();

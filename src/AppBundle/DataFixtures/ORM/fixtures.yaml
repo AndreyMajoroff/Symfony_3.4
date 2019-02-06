@@ -25,3 +25,4 @@ AppBundle\Entity\User:
     # use some fake data for this
     email: email+<current()>@gmail.com
     plainPassword: 111
+    roles: ['ROLE_ADMIN']

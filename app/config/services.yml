@@ -32,7 +32,8 @@ services:
 
 
   AppBundle\Service\MarkdownTransformer:
-    arguments: ['@markdown.parser', '@doctrine_cache.providers.my_markdown_cache']
+    arguments:
+      $cache: '@doctrine_cache.providers.my_markdown_cache'
 
   AppBundle\DataFixtures\ORM\:
     resource: '../../src/AppBundle/DataFixtures/ORM/'

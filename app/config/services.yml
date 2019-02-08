@@ -1,21 +1,23 @@
 # Learn more about services, parameters and containers at
 # https://symfony.com/doc/current/service_container.html
+
+imports:
+  - {resource: legacy_aliases.yml}
+
 parameters:
     #parameter_name: value
 
 services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
 
-  AppBundle\Service\MarkdownTransformer: '@app.markdown_transformer'
-  app.markdown_transformer:
-    class: AppBundle\Service\MarkdownTransformer
+  AppBundle\Service\MarkdownTransformer:
     arguments: ['@markdown.parser', '@doctrine_cache.providers.my_markdown_cache']
 
   app.markdown_extension:
     class: AppBundle\Twig\MarkdownExtension
-    tags:
-      - { name: twig.extension }
 #    arguments: ['@app.markdown_transformer']
-    autowire: true
 
   AppBundle\DataFixtures\ORM\:
     resource: '../../src/AppBundle/DataFixtures/ORM/'
@@ -23,11 +25,9 @@ services:
 
   app.security.login_form_authenticator:
     class: AppBundle\Security\LoginFormAuthenticator
-    autowire: true
 
   app.doctrine.hash_password_listener:
     class: AppBundle\Doctrine\HashPasswordListener
-    autowire: true
     tags:
       - { name: doctrine.event_subscriber }
 

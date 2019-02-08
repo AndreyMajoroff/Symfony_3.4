@@ -1,9 +1,6 @@
 # Learn more about services, parameters and containers at
 # https://symfony.com/doc/current/service_container.html
 
-imports:
-  - {resource: legacy_aliases.yml}
-
 parameters:
     #parameter_name: value
 

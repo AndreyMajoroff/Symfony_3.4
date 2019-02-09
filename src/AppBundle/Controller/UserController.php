@@ -11,18 +11,21 @@ use AppBundle\Security\LoginFormAuthenticator;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 
 class UserController extends Controller
 {
     /**
      * @Route("/register", name="user_register")
      */
-    public function registerAction(Request $request, LoginFormAuthenticator $authenticator)
+    public function registerAction(Request $request
+        , LoginFormAuthenticator $authenticator
+        , GuardAuthenticatorHandler $authenticatorHandler)
     {
         $form = $this->createForm(UserRegistrationForm::class);
 
         $form->handleRequest($request);
-        if ($form->isValid())
+        if ($form->isSubmitted() && $form->isValid())
         {
             /**
              * @var User $user
@@ -35,7 +38,7 @@ class UserController extends Controller
 
             $this->addFlash('success', 'Welcome '.$user->getEmail());
 
-            return $this->get('security.authentication.guard_handler')
+            return $authenticatorHandler
                 ->authenticateUserAndHandleSuccess(
                     $user,
                     $request,

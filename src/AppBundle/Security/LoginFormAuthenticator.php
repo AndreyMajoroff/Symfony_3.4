@@ -38,11 +38,13 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
         $this->passwordEncoder = $passwordEncoder;
     }
 
+    public function supports(Request $request)
+    {
+        return $request->getPathInfo() == '/login' && $request->isMethod('POST');
+    }
+
     public function getCredentials(Request $request)
     {
-        if ($request->attributes->get('_route') === 'security_login'
-            && $request->isMethod('POST'))
-        {
             $form = $this->formFactory->create(LoginForm::class);
             $form->handleRequest($request);
 
@@ -53,9 +55,6 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
             );
 
             return $data;
-        }
-
-        return null;
     }
 
     public function getUser($credentials, UserProviderInterface $userProvider)

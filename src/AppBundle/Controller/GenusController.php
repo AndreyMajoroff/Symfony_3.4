@@ -6,6 +6,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Genus;
 use AppBundle\Entity\GenusNote;
 use AppBundle\Service\MarkdownTransformer;
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -57,7 +58,7 @@ class GenusController extends Controller
     /**
      * @Route("/genus/{genusName}", name="genus_show")
      */
-    public function showAction($genusName, MarkdownTransformer $markdownTransformer)
+    public function showAction($genusName, MarkdownTransformer $markdownTransformer, LoggerInterface $logger)
     {
         $em = $this->getDoctrine()->getManager();
         $genus = $em->getRepository('AppBundle:Genus')
@@ -69,21 +70,7 @@ class GenusController extends Controller
 
         $funFact = $markdownTransformer->parse($genus->getFunFact());
 
-//        $cache = $this->get('doctrine_cache.providers.my_markdown_cache');
-//        $key = md5($funFact);
-//        if ($cache->contains($key))
-//        {
-//            $funFact = $cache->fetch($key);
-//        }else{
-//            sleep(1);
-//
-//            $funFact = $this->get('markdown.parser')
-//                ->transform($funFact);
-//
-//            $cache->save($key, $funFact);
-//        }
-
-        $this->get('logger')
+        $logger
             ->info('Showing genus: '.$genusName);
 
         $recentNotes = $em->getRepository('AppBundle:GenusNote')
